@@ -11,16 +11,16 @@ int main(int argc, char* argv[]) {
     // Compile for Windows
     cmd.count = 0;
     nob_cmd_append(&cmd, "x86_64-w64-mingw32-gcc", "-Wall", "-Wextra");
-    nob_cmd_append(&cmd, "-o", "build/main");
+    nob_cmd_append(&cmd, "-o", "build/zebra");
     nob_cmd_append(&cmd, "src/main.c");
-    nob_cmd_append(&cmd, "-lm");
+    nob_cmd_append(&cmd, "-lm", "-static");
     if (!nob_cmd_run_sync(cmd)) return 1;
 
 #ifndef _WIN32
     // Compile for Linux
     cmd.count = 0;
     nob_cmd_append(&cmd, "gcc", "-Wall", "-Wextra");
-    nob_cmd_append(&cmd, "-o", "build/main");
+    nob_cmd_append(&cmd, "-o", "build/zebra");
     nob_cmd_append(&cmd, "src/main.c");
     nob_cmd_append(&cmd, "-lm");
     if (!nob_cmd_run_sync(cmd)) return 1;
