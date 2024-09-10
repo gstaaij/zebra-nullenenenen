@@ -230,7 +230,7 @@ int main(int argc, char* argv[]) {
     }
 
     printf("Do you want to see the recieved (corrupted) message? [y/N] ");
-    fgets(ynbuffer, 2, stdin);
+    fgets(ynbuffer, 20, stdin);
     if (ynbuffer[0] == 'y' || ynbuffer[0] == 'Y') {
         printDivider(n);
         for (uint64_t i = 0; i < encodedLength; ++i) {
@@ -295,6 +295,12 @@ int main(int argc, char* argv[]) {
     printf("\n");
     printDivider(n);
     printf("%"PRIu64" words were corrected.\n", amountOfCorrections);
+
+#ifdef _WIN32
+    printDivider(n);
+    printf("Press ENTER to exit...\n");
+    getchar();
+#endif // _WIN32
 
     return 0;
 
